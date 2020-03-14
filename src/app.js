@@ -6,6 +6,8 @@ const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
 const commentsRouter = require('./comments/comments-router')
 const requestsRouter = require('./requests/requests-router')
+const authRouter = require('./auth/auth-router')
+
 
 const app = express()
 
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
 //use the endpoints
 app.use('/api/comments',commentsRouter)
 app.use('/api/requests',requestsRouter)
-
+app.use('/api/auth',authRouter)
 
 //error handling middleware
 app.use(function errorHandler(error, req, res, next) {
