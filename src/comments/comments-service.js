@@ -12,6 +12,7 @@ const CommentsService = {
         return db('brand_comments')
             .where({id})
             .update(newCommentFields)
+            .returning('*')
     },
     deleteComment(db,id){
         return db   

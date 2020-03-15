@@ -49,8 +49,8 @@ commentsRouter
             req.params.comment_id,
             commentToUpdate
         )
-            .then(numRowsAffected=>{
-                res.status(204).end()
+            .then(comment=>{
+                res.status(200).json(CommentsService.serializeComment(comment))
             })
             .catch(next)
     })
