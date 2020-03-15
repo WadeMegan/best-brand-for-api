@@ -47,6 +47,7 @@ const RequestsService={
             .from('brand_requests')
             .where('brand_requests.user_id',user_id)
             .select('*')
+            .orderBy('id','desc')
     },
     serializeRequest(request){
         return {
