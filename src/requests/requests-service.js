@@ -40,6 +40,13 @@ const RequestsService={
             .delete()
             .returning('*')
     },
+    //get request by user id
+    getByUserId(db, user_id){
+        return db   
+            .from('brand_requests')
+            .where('brand_requests.user_id',user_id)
+            .select('*')
+    },
     serializeRequest(request){
         return {
             id: request.id,

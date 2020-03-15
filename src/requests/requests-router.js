@@ -100,5 +100,19 @@ requestsRouter
             .catch(next)
     })
 
+requestsRouter
+    .route('/users/:user_id')
+    //get all requests that were posted by a specific user
+    .get((req,res,next)=>{
+        RequestsService.getByUserId(
+            req.app.get('db'),
+            req.params.user_id
+        )
+            .then(requests=>{
+                res.json(requests.map(RequestsService.serializeRequest))
+            })
+            .catch(next)
+    })
+
 
 module.exports = requestsRouter
