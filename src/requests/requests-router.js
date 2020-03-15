@@ -81,7 +81,7 @@ requestsRouter
             .then(request=>{
                 res 
                     .status(204)
-                    .json()
+                    .json([{"request":"3"}])
             })
             .catch(next)
     })
