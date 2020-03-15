@@ -12,6 +12,7 @@ const RequestsService={
         return db   
             .from('brand_requests')
             .select('*')
+            .orderBy('date','desc')
     },
     //get request by id
     getById(db, id){
