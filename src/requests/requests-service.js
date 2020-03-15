@@ -33,6 +33,7 @@ const RequestsService={
         return db('brand_requests')
             .where({id})
             .update(newRequestFields)
+            .returning('*')
     },
     deleteRequest(db,id){
         return db   
