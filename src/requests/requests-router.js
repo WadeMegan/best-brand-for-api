@@ -80,7 +80,7 @@ requestsRouter
         )
             .then(request=>{
                 res 
-                    .status(204)
+                    .status(200)
                     .json([{"request":"3"}])
             })
             .catch(next)

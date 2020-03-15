@@ -62,8 +62,8 @@ commentsRouter
         )
             .then(comment=>{
                 res
-                    .status(204)
-                    .json()
+                    .status(200)
+                    .json([{"comment":"3"}])
             })
             .catch(next)
     })
