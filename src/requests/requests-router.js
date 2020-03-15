@@ -68,8 +68,8 @@ requestsRouter
             req.params.request_id,
             requestToUpdate
         )
-            .then(numRowsAffected=>{
-                res.status(204).end()
+            .then(request=>{
+                res.status(200).json(RequestsService.serializeRequest(request))
             })
             .catch(next)
     })
