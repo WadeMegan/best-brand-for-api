@@ -30,6 +30,7 @@ const RequestsService={
             )
             .join('brand_users AS users','brand_users.id','brand_requests.user_id')
             .where('brand_requests.id',id)
+            .first()
             .then(([request])=>request)
             //.returning('*')
     },
@@ -37,7 +38,7 @@ const RequestsService={
     getByCategory(db,keyword,category){
         return db   
             .from('brand_requests')
-            .where('brand_requests.product','like',keyword) 
+            .where('brand_requests.product','like',keyword) // doesnt work
             .where('brand_requests.category',category)
             .select('*')
     },
