@@ -25,7 +25,6 @@ const CommentsService = {
     getByRequestId(db,request_id){
         return db   
             .from('brand_comments AS comments')
-            .join('brand_users AS users','comments.user_id','users.id')
             .select(
                 'comments.id AS id',
                 'comments.request_id AS request_id',
@@ -35,7 +34,8 @@ const CommentsService = {
                 'users.first_name AS first_name',
                 'users.last_name AS last_name'
             )
-            .where('brand_comments.request_id',request_id)
+            .join('brand_users AS users','users.id','comments.user_id')
+            .where('comments.request_id',request_id)
             
     },
     serializeComment(comment){
