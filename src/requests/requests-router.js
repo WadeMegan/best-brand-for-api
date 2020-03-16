@@ -87,11 +87,12 @@ requestsRouter
     })
 
 requestsRouter
-    .route('/category/:category')
+    .route('/keyword/:keyword/category/:category')
     //get all requests that are within a certain category
     .get((req,res,next)=>{
         RequestsService.getByCategory(
             req.app.get('db'),
+            req.params.keyword,
             req.params.category
         )
             .then(requests=>{
