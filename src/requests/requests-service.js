@@ -30,7 +30,7 @@ const RequestsService={
             )
             .join('brand_users AS users','users.id','req.user_id')
             .where('brand_requests.id',id)
-            //.then(([request])=>request)
+            .then(([request])=>request)
     },
     //get all requests from specific category
     getByCategory(db,category){
@@ -61,6 +61,16 @@ const RequestsService={
             .orderBy('id','desc')
     },
     serializeRequest(request){
+        return {
+            id: request.id,
+            user_id: request.user_id,
+            product: xss(request.product),
+            category: request.category,
+            info: xss(request.info),
+            date: request.date
+        }
+    },
+    serializeRequestWithUser(request){
         return {
             id: request.id,
             user_id: request.user_id,
