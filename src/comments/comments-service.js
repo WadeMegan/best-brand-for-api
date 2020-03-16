@@ -36,6 +36,7 @@ const CommentsService = {
             )
             .join('brand_users AS users','users.id','comments.user_id')
             .where('comments.request_id',request_id)
+            .orderBy('id','desc')
             
     },
     serializeComment(comment){
