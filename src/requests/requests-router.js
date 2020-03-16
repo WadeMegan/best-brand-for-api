@@ -32,7 +32,7 @@ requestsRouter
         RequestsService.getAll(
             req.app.get('db')
         )
-        .then(requests=>{
+        .then(request=>{
             res
                 .json(RequestsService.serializeRequestWithUser(request))
         })
