@@ -30,7 +30,8 @@ const RequestsService={
             )
             .join('brand_users AS users','users.id','req.user_id')
             .where('brand_requests.id',id)
-            .then(([request])=>request)
+            //.then(([request])=>request)
+            .returning('*')
     },
     //get all requests from specific category
     getByCategory(db,category){
