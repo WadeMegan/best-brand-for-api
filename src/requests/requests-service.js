@@ -17,9 +17,19 @@ const RequestsService={
     //get request by id
     getById(db, id){
         return db   
-            .from('brand_requests')
+            .from('brand_requests AS req')
+            .select(
+                'req.id AS id',
+                'req.user_id AS user_id',
+                'req.product AS product',
+                'req.category AS category',
+                'req.info AS info',
+                'req.date AS date',
+                'users.first_name AS first_name',
+                'users.last_name AS last_name'
+            )
+            .join('brand_users AS users','users.id','req.user_id')
             .where({id})
-            .select('*')
             .then(([request])=>request)
     },
     //get all requests from specific category
@@ -57,7 +67,9 @@ const RequestsService={
             product: xss(request.product),
             category: request.category,
             info: xss(request.info),
-            date: request.date
+            date: request.date,
+            first_name: request.first_name,
+            last_name: request.last_name
         }
     }
 }
