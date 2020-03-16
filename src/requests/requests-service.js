@@ -17,18 +17,18 @@ const RequestsService={
     //get request by id
     getById(db, id){
         return db   
-            .from('brand_requests AS req')
+            .from('brand_requests')
             .select(
-                'req.id AS id',
-                'req.user_id AS user_id',
-                'req.product AS product',
-                'req.category AS category',
-                'req.info AS info',
-                'req.date AS date',
-                'users.first_name AS first_name',
-                'users.last_name AS last_name'
+                'brand_requests.id AS id',
+                'brand_requests.user_id AS user_id',
+                'brand_requests.product AS product',
+                'brand_requests.category AS category',
+                'brand_requests.info AS info',
+                'brand_requests.date AS date',
+                'brand_users.first_name AS first_name',
+                'brand_users.last_name AS last_name'
             )
-            .join('brand_users AS users','req.user_id','users.id')
+            .join('brand_users AS users','brand_users.id','brand_requests.user_id')
             .where('brand_requests.id',id)
             .then(([request])=>request)
             //.returning('*')

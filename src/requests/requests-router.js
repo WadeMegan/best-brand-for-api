@@ -46,7 +46,9 @@ requestsRouter
             req.app.get('db'),
             req.params.request_id
         )
-            .then(RequestsService.serializeRequestWithUser)
+            .then(request=>{
+                res.json(RequestsService.serializeRequestWithUser)
+            })
             .catch(next)
     })
     .patch(jsonBodyParser,(req,res,next)=>{
