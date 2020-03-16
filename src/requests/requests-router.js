@@ -32,9 +32,8 @@ requestsRouter
         RequestsService.getAll(
             req.app.get('db')
         )
-        .then(request=>{
-            res
-                .json(RequestsService.serializeRequestWithUser(request))
+        .then(requests=>{
+            res.json(requests.map(RequestsService.serializeRequest))
         })
         .catch(next)
     })
@@ -47,8 +46,8 @@ requestsRouter
             req.app.get('db'),
             req.params.request_id
         )
-            .then(requests=>{
-                res.json(RequestsService.serializeRequest(request))
+            .then(request=>{
+                res.json(RequestsService.serializeRequestWithUser(request))
             })
             .catch(next)
     })
