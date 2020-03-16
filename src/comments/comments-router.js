@@ -77,7 +77,7 @@ commentsRouter
             req.params.request_id
         )
             .then(comments=>{
-                res.json(comments.map(CommentsService.serializeComment))
+                res.json(comments.map(CommentsService.serializeCommentWithUser))
             })
             .catch(next)
     })

@@ -24,9 +24,19 @@ const CommentsService = {
     //returns comments based on the request id
     getByRequestId(db,request_id){
         return db   
-            .from('brand_comments')
+            .from('brand_comments AS comments')
+            .join('brand_users AS users','comments.user_id','users.id')
+            .select(
+                'comments.id AS id',
+                'comments.request_id AS request_id',
+                'comments.user_id AS user_id',
+                'comments.brand AS brand',
+                'comments.why AS why',
+                'users.first_name AS first_name',
+                'users.last_name AS last_name'
+            )
             .where('brand_comments.request_id',request_id)
-            .select('*')
+            
     },
     serializeComment(comment){
         return {
@@ -35,6 +45,17 @@ const CommentsService = {
             user_id: comment.user_id,
             brand: xss(comment.brand),
             why: xss(comment.why)
+        }
+    },
+    serializeCommentWithUser(comment){
+        return {
+            id: comment.id,
+            request_id: comment.request_id,
+            user_id: comment.user_id,
+            brand: xss(comment.brand),
+            why: xss(comment.why),
+            first_name: xss(comment.first_name),
+            last_name: xss(comment.last_name)
         }
     }
 }
