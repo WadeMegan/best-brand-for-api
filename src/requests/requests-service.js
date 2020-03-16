@@ -37,7 +37,7 @@ const RequestsService={
     getByCategory(db,keyword,category){
         return db   
             .from('brand_requests')
-            .where('brand_requests.brand','like',keyword)
+            .where('brand_requests.brand',keyword)
             .where('brand_requests.category',category)
             .select('*')
     },
