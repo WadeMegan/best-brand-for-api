@@ -24,12 +24,14 @@ const RequestsService={
                 'req.product AS product',
                 'req.category AS category',
                 'req.info AS info',
-                'req.date AS date'
+                'req.date AS date',
+                'users.first_name AS first_name',
+                'users.last_name AS last_name'
             )
             .join('brand_users AS users','users.id','req.user_id')
-            .where('brand_requests.id',id)
-            //.then(([request])=>request)
-            .returning('*')
+            .where('id',id)
+            .then(([request])=>request)
+            //.returning('*')
     },
     //get all requests from specific category
     getByCategory(db,category){
