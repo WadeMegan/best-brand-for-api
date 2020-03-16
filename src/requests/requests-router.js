@@ -46,8 +46,8 @@ requestsRouter
             req.app.get('db'),
             req.params.request_id
         )
-            .then(request=>{
-                res.json(RequestsService.serializeRequest(request))
+            .then(requests=>{
+                res.json(requests.map(RequestsService.serializeRequest))
             })
             .catch(next)
     })
