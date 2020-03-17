@@ -31,7 +31,7 @@ const RequestsService={
             .join('brand_users','brand_users.id','brand_requests.user_id')
             .where('brand_requests.id',id)
             .first()
-            //.then(([request])=>request)
+            .then((request)=>request)
             //.returning('*')
     },
     //get all requests from specific category
