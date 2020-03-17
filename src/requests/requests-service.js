@@ -28,7 +28,7 @@ const RequestsService={
                 'brand_users.first_name AS first_name',
                 'brand_users.last_name AS last_name'
             )
-            .join('brand_users AS users','brand_users.id','brand_requests.user_id')
+            .join('brand_users.id','brand_requests.user_id')
             .where('brand_requests.id',id)
             .first()
             .then(([request])=>request)
