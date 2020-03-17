@@ -47,7 +47,7 @@ requestsRouter
             req.params.request_id
         )
             .then(request=>{
-                res.json(RequestsService.serializeRequestWithUser)
+                res.json(RequestsService.serializeRequestWithUser(request))
             })
             .catch((error)=>{
                 console.log(error)
