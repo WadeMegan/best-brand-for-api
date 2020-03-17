@@ -49,7 +49,10 @@ requestsRouter
             .then(request=>{
                 res.json(RequestsService.serializeRequestWithUser)
             })
-            .catch(next)
+            .catch((error)=>{
+                console.log(error)
+                next()
+            })
     })
     .patch(jsonBodyParser,(req,res,next)=>{
         const { user_id, product, category, info, date } = req.body
