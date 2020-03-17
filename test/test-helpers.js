@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs')
+/*const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 function makeUsersArray(){
@@ -147,4 +147,4 @@ module.exports = {
     makeCommentsArray,
     cleanTables,
     seedUsers
-}
+}*/
