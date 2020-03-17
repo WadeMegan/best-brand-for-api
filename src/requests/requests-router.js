@@ -90,21 +90,6 @@ requestsRouter
     })
 
 requestsRouter
-    .route('/keyword/:keyword/category/:category')
-    //get all requests that are within a certain category
-    .get((req,res,next)=>{
-        RequestsService.getByCategory(
-            req.app.get('db'),
-            req.params.keyword,
-            req.params.category
-        )
-            .then(requests=>{
-                res.json(requests.map(RequestsService.serializeRequest))
-            })
-            .catch(next)
-    })
-
-requestsRouter
     .route('/users/:user_id')
     //get all requests that were posted by a specific user
     .get((req,res,next)=>{

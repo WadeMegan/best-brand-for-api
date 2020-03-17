@@ -1,4 +1,4 @@
-/*process.env.TZ = 'UCT'
+process.env.TZ = 'UCT'
 process.env.NODE_ENV = 'test'
 process.env.JWT_SECRET = 'auth-test-secret'
 
@@ -12,4 +12,3 @@ const supertest = require('supertest')
 
 global.expect = expect
 global.supertest = supertest
-*/

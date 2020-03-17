@@ -1,11 +1,9 @@
-/*
-
 const knex = require('knex')
 const jwt = require('jsonwebtoken')
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe.only('Auth Endpoints', function(){
+describe('Auth Endpoints', function(){
 
     const testUsers = helpers.makeUsersArray()
     const testUser = testUsers[0]
@@ -94,5 +92,3 @@ describe.only('Auth Endpoints', function(){
     })
 
 })
-
-*/

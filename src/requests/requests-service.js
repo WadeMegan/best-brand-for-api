@@ -32,15 +32,6 @@ const RequestsService={
             .where('brand_requests.id',id)
             .first()
             .then((request)=>request)
-            //.returning('*')
-    },
-    //get all requests from specific category
-    getByCategory(db,keyword,category){
-        return db   
-            .from('brand_requests')
-            .where('brand_requests.product','like',keyword) // doesnt work
-            .where('brand_requests.category',category)
-            .select('*')
     },
     updateRequest(db, id, newRequestFields){
         return db('brand_requests')

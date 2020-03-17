@@ -1,4 +1,4 @@
-/*const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 function makeUsersArray(){
@@ -141,10 +141,142 @@ function seedUsers(db, users) {
       )
 }
 
+function seedRequests(db, requests) {
+    const preppedRequests = requests.map(request => ({
+      ...request,
+    }))
+    return db.into('brand_requests').insert(preppedRequests)
+      .then(() =>
+        // update the auto sequence to stay in sync
+        db.raw(
+          `SELECT setval('brand_requests_id_seq', ?)`,
+          [requests[requests.length - 1].id],
+        )
+      )
+  }
+
+function makeMaliciousRequest() {
+    const maliciousRequest = {
+        id: 911,
+        user_id: 1,
+        product: 'Naughty naughty very naughty <script>alert("xss");</script>',
+        category: 'Transportation',
+        info:'Naughty naughty very naughty <script>alert("xss");</script>',
+        date: '2020-02-02T00:00:00.000Z'
+    }
+    const expectedRequest = {
+        id: 911,
+        user_id: 1,
+        product: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
+        category: 'Transportation',
+        info:'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
+        date: '2020-02-02T00:00:00.000Z'
+    }
+    return {
+        maliciousRequest,
+        expectedRequest,
+    }
+}
+
+function seedMaliciousRequest(db,request){
+    return db  
+        .into('brand_requests')
+        .insert(request)
+  }
+
+function makeExpectedRequestWithUser(){
+    return (
+        {
+            id: 1,
+            user_id: 1, 
+            product: 'Running Shoes',
+            category: 'Clothing & Shoes',
+            info: 'I have bad knees so must have lots of cushioning.',
+            date: '2020-02-02T00:00:00.000Z',
+            first_name: 'test-user-1',
+            last_name: 'Test user 1'
+        }
+    )
+}
+
+function makeExpectedRequestListForUser2(){
+    return [
+        {
+            id: 2,
+            user_id: 2, 
+            product: 'Car',
+            category: 'Transportation',
+            info: 'Must seat at least 8!',
+            date: '2020-02-02T00:00:00.000Z'
+        },
+        {
+            id: 3,
+            user_id: 2, 
+            product: 'Diapers',
+            category: 'Baby & Kid',
+            info: 'Soft material please.',
+            date: '2020-02-02T00:00:00.000Z'
+        }
+    ]
+}
+
+function seedComments(db, comments) {
+    const preppedComments = comments.map(comment => ({
+      ...comment,
+    }))
+    return db.into('brand_comments').insert(preppedComments)
+      .then(() =>
+        // update the auto sequence to stay in sync
+        db.raw(
+          `SELECT setval('brand_comments_id_seq', ?)`,
+          [comments[comments.length - 1].id],
+        )
+      )
+  }
+
+function makeCommentsArrayWithUser(){
+    return [
+        {
+            id: 1,
+            request_id: 1,
+            user_id: 1, 
+            brand: 'Nike',
+            why: 'They look so cool.',
+            first_name: 'test-user-1',
+            last_name: 'Test user 1'
+        },
+        {
+            id: 3,
+            request_id: 1,
+            user_id: 2, 
+            brand: 'Huggies',
+            why: 'My baby loves them.',
+            first_name: 'test-user-2',
+            last_name: 'Test user 2'
+        },
+        {
+            id: 4,
+            request_id: 1,
+            user_id: 1, 
+            brand: 'iPhone',
+            why: 'All the new iphones have great cameras.',
+            first_name: 'test-user-1',
+            last_name: 'Test user 1'
+        }
+    ]
+}
+
 module.exports = {
     makeUsersArray,
     makeRequestsArray,
     makeCommentsArray,
     cleanTables,
-    seedUsers
-}*/
+    seedUsers,
+    seedRequests,
+    makeMaliciousRequest,
+    seedMaliciousRequest,
+    makeExpectedRequestWithUser,
+    makeExpectedRequestListForUser2,
+    seedComments,
+    makeCommentsArrayWithUser
+}

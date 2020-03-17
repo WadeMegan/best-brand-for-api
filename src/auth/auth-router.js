@@ -40,8 +40,8 @@ authRouter
             res.send({
               authToken: AuthService.createJwt(sub, payload),
               id: dbUser.id,
-              //first_name: dbUser.first_name,
-              //last_name: dbUser.last_name
+              first_name: dbUser.first_name,
+              last_name: dbUser.last_name
             })
           })
       })
