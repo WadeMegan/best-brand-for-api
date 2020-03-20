@@ -2,7 +2,7 @@
 
 ## Use
 
-The Best Brand For API was built for use with best-brand-for-client ([repo](https://github.com/WadeMegan/best-brand-for-client)/[live app](https://best-brand-for.wademegan.now.sh/)).
+The Best Brand For API was built for use with best-brand-for-client ([repo](https://github.com/WadeMegan/Best-Brand-For-Client)/[live app](https://best-brand-for.wademegan.now.sh/)).
 
 ## Documentation 
 
